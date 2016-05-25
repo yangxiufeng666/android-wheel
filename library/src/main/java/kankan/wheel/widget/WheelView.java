@@ -866,7 +866,9 @@ public class WheelView extends View {
 		} else {
 			createItemsLayout();
 		}
-
+		if (viewAdapter == null){
+			return;
+		}
 		// add views
 		// all items must be included to measure width correctly
 		for (int i = viewAdapter.getItemsCount()-1; i >= 0; i--){

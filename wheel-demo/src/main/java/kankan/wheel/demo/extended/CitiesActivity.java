@@ -10,6 +10,7 @@ import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -25,7 +26,6 @@ public class CitiesActivity extends Activity {
 		setContentView(R.layout.cities_layout);
 
 		final WheelView country = (WheelView) findViewById(R.id.country);
-		country.setVisibleItems(3);
 		country.setViewAdapter(new CountryAdapter(this));
 
 		final String cities[][] = new String[][] {
@@ -36,7 +36,10 @@ public class CitiesActivity extends Activity {
 		};
 
 		final WheelView city = (WheelView) findViewById(R.id.city);
-		city.setVisibleItems(5);
+
+		country.setCurrentItem(0);
+		city.setCurrentItem(0);
+		updateCities(city, cities, 0);
 
 		country.addChangingListener(new OnWheelChangedListener() {
 			@Override
@@ -59,7 +62,7 @@ public class CitiesActivity extends Activity {
 			}
 		});
 
-		country.setCurrentItem(1);
+
 	}
 
 	/**
@@ -71,6 +74,7 @@ public class CitiesActivity extends Activity {
 		adapter.setTextSize(18);
 		city.setViewAdapter(adapter);
 		city.setCurrentItem(cities[index].length / 2);
+//		city.setCurrentItem(0);
 	}
 
 	/**
